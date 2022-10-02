@@ -31,7 +31,7 @@ def load_lottie(url):
 animation = load_lottie("https://assets4.lottiefiles.com/packages/lf20_mcvtkrvc.json")
 animation4 = load_lottie("https://assets5.lottiefiles.com/packages/lf20_isbiybfh.json")
 animation5 = load_lottie("https://assets7.lottiefiles.com/packages/lf20_8btahzqu.json")
-service1 = load_lottie("https://assets1.lottiefiles.com/packages/lf20_3rqwsqnj.json")
+service1 = load_lottie("https://assets10.lottiefiles.com/packages/lf20_9wpyhdzo.json")
 service2 = load_lottie("https://assets1.lottiefiles.com/packages/lf20_iqbweiiz.json")
 service3 = load_lottie("https://assets7.lottiefiles.com/packages/lf20_zdtukd5q.json")
 service4 = load_lottie("https://assets6.lottiefiles.com/packages/lf20_gxcnsfk2.json")
@@ -147,7 +147,7 @@ if selected == "Home":
         with right_column:
             st.write("###")
             st.write("###")
-            st_lottie(animation, height=300, key="hacking")
+            st_lottie(service1, height=300, key="data")
 
 # ------------- Service Page ------------------ #
 if selected == "Services":
