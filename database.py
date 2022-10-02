@@ -3,7 +3,7 @@ from deta import Deta
 from dotenv import load_dotenv
 
 
-DETA_KEY = st.secrets("key")
+DETA_KEY = st.secrets["key"]
 
 deta = Deta(DETA_KEY)
 
