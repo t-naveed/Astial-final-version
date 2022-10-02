@@ -30,7 +30,7 @@ def load_lottie(url):
 
 animation = load_lottie("https://assets4.lottiefiles.com/packages/lf20_mcvtkrvc.json")
 animation4 = load_lottie("https://assets5.lottiefiles.com/packages/lf20_isbiybfh.json")
-animation5 = load_lottie("https://assets4.lottiefiles.com/packages/lf20_joexwr4o.json")
+animation5 = load_lottie("https://assets7.lottiefiles.com/packages/lf20_8btahzqu.json")
 service1 = load_lottie("https://assets1.lottiefiles.com/packages/lf20_3rqwsqnj.json")
 service2 = load_lottie("https://assets1.lottiefiles.com/packages/lf20_iqbweiiz.json")
 service3 = load_lottie("https://assets7.lottiefiles.com/packages/lf20_zdtukd5q.json")
