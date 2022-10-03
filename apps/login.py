@@ -148,7 +148,7 @@ def app():
                 uploaded_file = st.file_uploader("Choose a file to see the Analytical Data")
                 if uploaded_file is not None:
                     piechart(uploaded_file)
-            with right column:
+            with right_column:
                 col1, col2, col3 = st.columns(3)
                 col1.metric("Enterted Link", "70", "5%")
                 col2.metric("Entered Credential", "30", "-8%")
