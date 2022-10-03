@@ -1,10 +1,10 @@
 import os
-import streamlit as st
 from deta import Deta
 from dotenv import load_dotenv
 
+load_dotenv(".env")
 
-DETA_KEY = st.secrets["key"]
+DETA_KEY = os.getenv("DETA_KEY")
 
 deta = Deta(DETA_KEY)
 
@@ -18,9 +18,8 @@ def fetch_all_users():
     res = db.fetch()
     return res.items
 
-print(fetch_all_users())
+
 
 def get_user(username):
     return db.get(username)
 
-print(get_user("pparker"))
