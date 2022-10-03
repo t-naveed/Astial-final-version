@@ -1,7 +1,7 @@
 import os
 from deta import Deta
 from dotenv import load_dotenv
-
+import streamlit as st
 
 
 DETA_KEY = st.secrets["key"]
