@@ -149,10 +149,9 @@ def app():
                 if uploaded_file is not None:
                     piechart(uploaded_file)
             with right_column:
-                col1, col2, col3 = st.columns(3)
-                col1.metric("Enterted Link", "70", "5%")
-                col2.metric("Entered Credential", "30", "-8%")
-                col3.metric("Ignored SMS", "20", "-4%")
+                right_column.metric("Enterted Link", "70", "5%")
+                right_column.metric("Entered Credential", "30", "-8%")
+                right_column.metric("Ignored SMS", "20", "-4%")
 
         authenticator.logout("Logout", "sidebar")
 
