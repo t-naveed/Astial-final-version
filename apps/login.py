@@ -102,10 +102,10 @@ def app():
     usernames = [user["key"] for user in users]
     names = [user["name"] for user in users]
     hashed_passwords = [user["password"] for user in users]
-
+    global authenticator
     authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
                                         "sales_dashboard", "abcdef", cookie_expiry_days=30)
-
+    global name, authentication_status
     name, authentication_status, username = authenticator.login("Login", "sidebar")
 
     if authentication_status == False:
@@ -113,12 +113,15 @@ def app():
 
     if authentication_status == None:
         with st.sidebar:
-            st.warning("Please enter your username and password or SignUp")
-
+            st.warning("Enter usename and password to log in. Don't have an account? Select SignUp from dropdown")
+    st.write("##")
+    st.write("##")
+def success():
     if authentication_status:
+        st.success(f"Welcome {name}. You can select each tab below for upload data and launching smishing")
         with st.sidebar:
-            st.success(f"Welcome {name}. You can select each tab below for upload data and launching smishing")
-        tab1, tab2, tab3 = st.tabs(["Upload Data", "Launch Attack", "Analytics Report"])
+            st.success(f"Logged in as {name}. You can logout by clicking the logout button.")
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["Upload Data", "Launch Attack", "Live Dashboard", "Final Analytics Data", "comparison"])
         with tab1:
             left_column, right_column = st.columns(2)
             with left_column:
@@ -137,18 +140,19 @@ def app():
                     st.success("Ready to launch the attack!? Click the button and boom!!!")
                     number_list(uploaded_file)
                 else:
-                    st.error("Before clicking 'Launch Smishing' button, upload a file containing emplyoee name and phone number to launch the Smishing.")
+                    st.warning("Before clicking 'Launch Smishing' button, upload a file containing emplyoee name and phone number to launch the Smishing.")
                 st.write("##")
                 st.write("##")
                 if st.button("Launch Smishing"):
                     send_message()
         with tab3:
+            st.subheader("Live Dashboard will be here")
+
+        with tab5:
             left_column, right_column = st.columns(2)
             with left_column:
-                uploaded_file = st.file_uploader("Choose a file to see the Analytical Data")
-                if uploaded_file is not None:
-                    piechart(uploaded_file)
-   
+                st.subheader("Compare the result with last attack")
+
 
         authenticator.logout("Logout", "sidebar")
 
