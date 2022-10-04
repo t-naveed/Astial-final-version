@@ -1,11 +1,9 @@
-import streamlit as st
+from apps.login import *
 import requests
 from streamlit_option_menu import option_menu
-import pandas as pd
-import matplotlib.pyplot as plt
 from streamlit_lottie import st_lottie
 from multiapp import MultiApp
-from apps import login,signup
+from apps import login, signup
 
 
 st.set_page_config(page_title="Astia a Smishing Platform", page_icon=":fishing_pole_and_fish:", layout="wide")
@@ -31,65 +29,9 @@ def load_lottie(url):
 animation = load_lottie("https://assets4.lottiefiles.com/packages/lf20_mcvtkrvc.json")
 animation4 = load_lottie("https://assets5.lottiefiles.com/packages/lf20_isbiybfh.json")
 animation5 = load_lottie("https://assets4.lottiefiles.com/packages/lf20_joexwr4o.json")
-service1 = load_lottie("https://assets1.lottiefiles.com/packages/lf20_3rqwsqnj.json")
-service2 = load_lottie("https://assets1.lottiefiles.com/packages/lf20_iqbweiiz.json")
 service3 = load_lottie("https://assets7.lottiefiles.com/packages/lf20_zdtukd5q.json")
-service4 = load_lottie("https://assets6.lottiefiles.com/packages/lf20_gxcnsfk2.json")
-service5 = load_lottie("https://assets5.lottiefiles.com/packages/lf20_x1ikbkcj.json")
-service6 = load_lottie("https://assets5.lottiefiles.com/packages/lf20_xBgYq2.json")
 
 
-
-
-
-# function for percentage-conversions
-def percentage_maker(count, link_column):
-    percentage = float(((count / len(link_column)) * 100))
-    return percentage
-
-
-def piechart(str):
-    data = pd.read_excel(str)
-
-    # extracting OS and Risk column's data as two separate list
-    link_column = (data['ClickedTheLink'].tolist())
-    credential_column = (data['UsedCredential'].tolist())
-
-    # setting initial values zero for counting
-    click_count, credential_count, ignore_count, link_credential_both = 0, 0, 0, 0
-
-    # Determining operating systems with loop and if-else statements
-    for i in range(len(link_column)):
-        link_determiner = link_column[i]
-        credential_determiner = credential_column[i]
-        if link_determiner == "YES":
-            click_count += 1
-        if link_determiner == "IGNORED":
-            ignore_count += 1
-        if credential_determiner == "YES":
-            credential_count += 1
-        if link_determiner == "YES" and credential_determiner == "YES":
-            link_credential_both += 1
-
-    # Testing the program by printing and calculating total row number.
-    # Note: Remove the docstring for testing.
-
-    # Creating first chart
-    plt.figure(0)
-    topic = ['Clicked The Link', 'Ignored SMS', 'Entered Credential', 'Both']
-    size = [percentage_maker(click_count, link_column), percentage_maker(ignore_count, link_column),
-            percentage_maker(credential_count, link_column), percentage_maker(link_credential_both, link_column)]
-
-    labels = list(topic)
-
-    colors = ['gold', 'lightgreen', 'lightskyblue', 'lightcoral']
-    plt.pie(size, explode=(0.05, 0.05, 0.05, 0.05), labels=labels, colors=colors, autopct='%1.1f%%', shadow=False,
-            startangle=140)
-    plt.axis('equal')
-    plt.legend()
-    plt.savefig('Chart.png')
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot(plt.show())
 
 
 # ----------- Sidebar ----------- #
@@ -158,12 +100,12 @@ if selected == "Services":
 
         with right_column:
             st_lottie(service3, height=200, key="service3")
-        app = MultiApp()
-        app.add_app("Login", login.app)
-        app.add_app("SignUp", signup.app)
-        app.run()
-
-
+        with st.sidebar:
+            app = MultiApp()
+            app.add_app("Login", login.app)
+            app.add_app("SignUp", signup.app)
+            app.run()
+        login.success()
 
 # ------------- Support Page ------------------ #
 if selected == "Support":
@@ -198,6 +140,6 @@ if selected == "Pricing":
         st.write("##")
         left_column, right_column = st.columns(2)
         with left_column:
-            st_lottie(animation5, height=300, key="service")
+            st.write("")
         with right_column:
             st.write("")
