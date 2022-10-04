@@ -147,6 +147,12 @@ def success():
                     send_message()
         with tab3:
             st.subheader("Live Dashboard will be here")
+        with tab4:
+            left_column, right_column = st.columns(2)
+            with left_column:
+                uploaded_file = st.file_uploader("Choose a file to see the Analytical Data")
+                if uploaded_file is not None:
+                    piechart(uploaded_file)
 
         with tab5:
             left_column, right_column = st.columns(2)
