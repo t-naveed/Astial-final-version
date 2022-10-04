@@ -146,7 +146,12 @@ def success():
                 if st.button("Launch Smishing"):
                     send_message()
         with tab3:
-            st.subheader("Live Dashboard will be here")
+            st.success("Live Dashboard will be here")
+            left_column, middle_column, right_column = st.columns(3)
+            with left_column:
+                left_column.metric("Clicking Trendency", "70%", "5%")
+                middle_column.metric("Using Credential", "40%", "-15%")
+                right_column.metric("Overall", "86%", "4%")
         with tab4:
             left_column, right_column = st.columns(2)
             with left_column:
